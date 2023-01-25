@@ -11,9 +11,11 @@ pool:
 
 steps:
 - task: TerraformInstaller@0
+  displayName: terraforminstaller
   inputs:
     terraformVersion: 'latest'
 - task: TerraformTaskV3@3
+  displayName: terraforminit
   inputs:
     provider: 'azurerm'
     command: 'init'
@@ -23,11 +25,13 @@ steps:
     backendAzureRmContainerName: 'container2'
     backendAzureRmKey: 'pipeline.tfstate'
 - task: TerraformTaskV3@3
+  displayName: terraformplan
   inputs:
     provider: 'azurerm'
     command: 'plan'
     environmentServiceNameAzureRM: 'azure-connection'
 - task: TerraformTaskV3@3
+  displayName: terraformapply
   inputs:
     provider: 'azurerm'
     command: 'apply'
